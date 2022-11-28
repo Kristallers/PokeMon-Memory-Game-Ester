@@ -134,10 +134,11 @@ body {
 
 #startGameButton {
   padding: 0.3rem;
-  background-color: yellow;
-  border: 3px #3a5da8 solid;
+  background-color: #fecb04;
+  border: 5px #3a5da8 solid;
   width: 10rem;
   font-size: 1.5rem;
+  font-family: inherit;
 }
 
 /* loader */
@@ -175,6 +176,15 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.highscore__container {
+  padding: 1rem;
+}
+
+.highscore__list li {
+  margin: 0.2rem;
+  text-align: left;
 }
 
 .hidden {

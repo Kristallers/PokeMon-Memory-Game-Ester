@@ -43,7 +43,6 @@ const loadCardsFromApi = async () => {
     responseFromApi.map((item) => item.json())
   );
 
-  console.log(pokemonData);
   loader.classList.add("hidden");
   return pokemonData;
 };
@@ -80,8 +79,6 @@ const storeScore = (currentScore) => {
   };
   scoreArray.push(playerScore);
   localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
-  // console.log(scoreArray);
-  // console.log(JSON.parse(localStorage.getItem("scoreArray")));
   return scoreArray;
 };
 
@@ -89,14 +86,12 @@ const storeScore = (currentScore) => {
 const createListElement = (i) => {
   let scoreboardElement = document.createElement("li");
 
-  scoreboardElement.innerHTML =
-    JSON.parse(localStorage.getItem("scoreArray"))[i].date +
-    " " +
-    JSON.parse(localStorage.getItem("scoreArray"))[i].player +
-    ": " +
-    JSON.parse(localStorage.getItem("scoreArray"))[i].score;
+  scoreboardElement.innerHTML = `<b>${
+    JSON.parse(localStorage.getItem("scoreArray"))[i].date
+  }</b> ${JSON.parse(localStorage.getItem("scoreArray"))[i].player}: ${
+    JSON.parse(localStorage.getItem("scoreArray"))[i].score
+  }`;
   scoreboardWrapper.prepend(scoreboardElement);
-  console.log(scoreboardElement);
 };
 
 const setScoreboard = () => {
@@ -158,7 +153,6 @@ const flipCard = (e) => {
       matches++;
       if (matches === 8) {
         stopGame();
-        console.log("WINNER");
       }
       firstPick = null;
       isPaused = false;
