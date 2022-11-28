@@ -56,9 +56,9 @@ const displayPokemonCards = (pokemonIdsArray) => {
       const pokemonImgData = card.sprites.front_default;
       const pokemonNameData = card.name;
       return `
-        <div class="card" onclick="flipCard(event)" data-pokename="${pokemonNameData}">
-          <div class="front"></div>
-          <div class="back rotated">
+        <div class="game__board--card" onclick="flipCard(event)" data-pokename="${pokemonNameData}">
+          <div class="game__board--card-front"></div>
+          <div class="game__board--card-back rotated">
             <img src="${pokemonImgData}" alt="${pokemonNameData}"  />
             <h2>${pokemonNameData}</h2>
           </div>
@@ -172,8 +172,8 @@ const flipCard = (e) => {
 };
 
 const getFrontAndBack = (card) => {
-  const front = card.querySelector(".front");
-  const back = card.querySelector(".back");
+  const front = card.querySelector(".game__board--card-front");
+  const back = card.querySelector(".game__board--card-back");
   return [front, back];
 };
 

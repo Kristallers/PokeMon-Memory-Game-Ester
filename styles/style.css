@@ -85,7 +85,7 @@ body {
   text-align: center;
 }
 
-.card {
+.game__board--card {
   box-shadow: 0 3px 10px rgba(200, 200, 200, 0.9);
   border-radius: 10px;
   position: relative;
@@ -97,12 +97,12 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.card:hover {
+.game__board--card:hover {
   transform: scale(1.2);
 }
 
-.card > .front,
-.card > .back {
+.game__board--card > .game__board--card-front,
+.game__board--card > .game__board--card-back {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,12 +118,12 @@ body {
   transform: rotateY(180deg);
 }
 
-.back h2 {
+.game__board--card-back h2 {
   text-align: center;
   font-size: 1rem;
 }
 
-.front {
+.game__board--card-front {
   background-image: url("../assets/pokemonBall.png");
   background-position: center;
   background-size: cover;
@@ -198,12 +198,12 @@ body {
     align-items: center;
   }
 
-  .back img {
+  .game__board--card-back img {
     height: 55px;
     width: 55px;
   }
 
-  .back h2 {
+  .game__board--card-back h2 {
     text-align: center;
     font-size: 0.8rem;
   }
@@ -226,12 +226,12 @@ body {
     align-items: center;
   }
 
-  .back img {
+  .game__board--card-back img {
     height: 40px;
     width: 40px;
   }
 
-  .back h2 {
+  .game__board--card-back h2 {
     text-align: center;
     font-size: 0.7rem;
   }
