@@ -129,15 +129,10 @@ const startTimer = () => {
 
 // * stop timer functionality
 const stopTimer = () => {
-  storeScore(stopwatch.innerText);
-  createListElement(scoreArray.length - 1);
   clearInterval(timer);
-
-  console.log(scoreArray);
-  startButton.disabled = false;
 };
 
-// * FLipping card functionality
+// * Flipping card functionality
 const flipCard = (e) => {
   const pokemonCard = e.currentTarget;
   const [front, back] = getFrontAndBack(pokemonCard);
@@ -162,7 +157,7 @@ const flipCard = (e) => {
     } else {
       matches++;
       if (matches === 8) {
-        stopTimer();
+        stopGame();
         console.log("WINNER");
       }
       firstPick = null;
@@ -197,7 +192,15 @@ const createNewGame = async () => {
   startTimer();
 
   startButton.disabled = true; // disables the new game button while a game is already playing
-  inputField.disabled = true; // disables the new game button while a game is already playing
+  inputField.disabled = true; // disables the input field while a game is already playing
+};
+
+// * Stopping the game
+const stopGame = () => {
+  stopTimer();
+  storeScore(stopwatch.innerText);
+  createListElement(scoreArray.length - 1);
+  startButton.disabled = false;
 };
 
 //* event listeners
