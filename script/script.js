@@ -1,3 +1,5 @@
+"use strict";
+
 const apiURL = "https://pokeapi.co/api/v2/pokemon/";
 
 // HTML Elements
@@ -9,6 +11,8 @@ const stopwatch = document.getElementById("timer");
 const scoreboardWrapper = document.getElementById("scoreboard");
 const inputField = document.querySelector("input");
 
+let timerStart = Date.now();
+let timer;
 let firstPick;
 let isPaused = true;
 let matches = 0;
@@ -19,11 +23,6 @@ let scoreArray = JSON.parse(localStorage.getItem("scoreArray")) || [];
 gameBoardContainer.classList.add("hidden");
 loader.classList.add("hidden");
 startButton.classList.add("hidden");
-
-// * input event
-inputField.addEventListener("input", () => {
-  startButton.classList.remove("hidden");
-});
 
 // * Fetch api function
 const loadCardsFromApi = async () => {
@@ -46,6 +45,8 @@ const loadCardsFromApi = async () => {
   loader.classList.add("hidden");
   return pokemonData;
 };
+
+console.log(loadCardsFromApi());
 
 // * Rendering images in the gameboard
 const displayPokemonCards = (pokemonIdsArray) => {
@@ -81,16 +82,13 @@ const storeScore = (currentScore) => {
   localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
   return scoreArray;
 };
+console.log(storeScore());
 
 // * create a list element when a score exists
 const createListElement = (i) => {
   let scoreboardElement = document.createElement("li");
 
-  scoreboardElement.innerHTML = `<b>${
-    JSON.parse(localStorage.getItem("scoreArray"))[i].date
-  }</b> ${JSON.parse(localStorage.getItem("scoreArray"))[i].player}: ${
-    JSON.parse(localStorage.getItem("scoreArray"))[i].score
-  }`;
+  scoreboardElement.innerHTML = `<b>${scoreArray[i].date}</b> ${scoreArray[i].player}: ${scoreArray[i].score}`;
   scoreboardWrapper.prepend(scoreboardElement);
 };
 
@@ -197,9 +195,16 @@ const stopGame = () => {
   startButton.disabled = false;
 };
 
-//* event listeners
+// * event listeners
+// * click event to start the game
 startButton.addEventListener("click", createNewGame);
 
+// * sets the scoreboard when the game loads
 window.addEventListener("load", () => {
   setScoreboard();
+});
+
+// * shows the start button after recieving input
+inputField.addEventListener("input", () => {
+  startButton.classList.remove("hidden");
 });
